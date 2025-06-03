@@ -25,14 +25,7 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public boolean isRegistrationToken(String token) {
-        try {
-            Claims claims = extractAllClaims(token);
-            return "registration".equals(claims.get("token_type"));
-        } catch (Exception e) {
-            return false;
-        }
-    }
+
     public <T> T extractClaim(String token, Function<Claims, T> claimResolver) {
         final Claims claims = extractAllClaims(token);
         return claimResolver.apply(claims);
@@ -71,12 +64,10 @@ public class JwtService {
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
-    public boolean isValidAuthenticationToken(String token) {
-        return token != null && !isRegistrationToken(token);
-    }
 
 
-    private boolean isTokenExpired(String token) {
+
+    public boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 

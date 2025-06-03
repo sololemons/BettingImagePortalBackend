@@ -23,12 +23,13 @@ public class ImagesInfo {
     private String description;
     @Column(name = "product_category")
     @Enumerated(EnumType.STRING)
-    private ProductionCategory productCategory;
+    private ProductCategory productCategory;
     @Enumerated(EnumType.STRING)
     @Column(name = "image_status")
     private ImageStatus imageStatus;
-    @Enumerated(EnumType.STRING)
     @Column(name = "priority")
-    private Priority priority;
+    private int priority;
+    @Column(name = "path")
+    private String path;
 
 }

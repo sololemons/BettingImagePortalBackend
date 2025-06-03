@@ -48,6 +48,9 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
         if (userPhoneNumber != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(userPhoneNumber);
+            if (!jwtService.isTokenExpired(jwt)) {
+                throw new UnauthorizedException(" expired token.");
+            }
 
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                     userDetails, null, userDetails.getAuthorities());

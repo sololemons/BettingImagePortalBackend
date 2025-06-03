@@ -1,7 +1,11 @@
 package com.uploadportal.upload.imagesportal.services;
+import com.uploadportal.upload.imagesportal.dtos.UpdateCategory;
+import com.uploadportal.upload.imagesportal.dtos.UpdateDescription;
+import com.uploadportal.upload.imagesportal.dtos.UpdatePriority;
 import com.uploadportal.upload.imagesportal.dtos.UpdateStatus;
 import com.uploadportal.upload.imagesportal.entities.ImageStatus;
 import com.uploadportal.upload.imagesportal.entities.ImagesInfo;
+import com.uploadportal.upload.imagesportal.entities.ProductCategory;
 import com.uploadportal.upload.imagesportal.exceptions.MissingFieldException;
 import com.uploadportal.upload.imagesportal.repositories.ImageRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +43,7 @@ public class ImageService {
     }
 
     public ImagesInfo updateStatus(UpdateStatus updateStatus) {
+
         ImagesInfo image = imageRepository.findById(updateStatus.getId())
                 .orElseThrow(() -> new RuntimeException("Image not found"));
         image.setImageStatus(ImageStatus.valueOf(updateStatus.getStatus()));
@@ -74,17 +79,10 @@ public class ImageService {
     }
     public List<ImagesInfo> getAllImages() {
         List<ImagesInfo> images = imageRepository.findAll();
-
-        Comparator<ImagesInfo> priorityComparator = Comparator.comparingInt(img -> switch (img.getPriority().toString()) {
-            case "high" -> 1;
-            case "medium" -> 2;
-            case "low" -> 3;
-            default -> 4;
-        });
-
-        images.sort(priorityComparator);
+        images.sort(Comparator.comparingInt(ImagesInfo::getPriority).reversed());
         return images;
     }
+
     public String extractCloudflareIdFromUrl(String imageUrl) {
         String[] parts = imageUrl.split("/");
         if(parts.length > 4) {
@@ -93,4 +91,31 @@ public class ImageService {
         throw new MissingFieldException(("Image Url is Invalid"));
     }
 
+    public ImagesInfo updatePriority(UpdatePriority updatePriority) {
+        ImagesInfo image = imageRepository.findById(updatePriority.getId())
+                .orElseThrow(() -> new MissingFieldException("Image not found"));
+        image.setPriority(updatePriority.getPriority());
+        return imageRepository.save(image);
+    }
+
+    public ImagesInfo updateDescription(UpdateDescription updateDescription) {
+        ImagesInfo imagesInfo = imageRepository.findById(updateDescription.getId())
+                .orElseThrow(() -> new MissingFieldException("Image not found"));
+        imagesInfo.setDescription(updateDescription.getDescription());
+        imagesInfo.setImageName(updateDescription.getImageName());
+        return imageRepository.save(imagesInfo);
+    }
+
+    public ImagesInfo updateProductCategory(UpdateCategory updateCategory) {
+        ImagesInfo imagesInfo = imageRepository.findById(updateCategory.getId())
+                .orElseThrow(() -> new MissingFieldException("Image not found"));
+        imagesInfo.setProductCategory(ProductCategory.valueOf(updateCategory.getCategory()));
+        return imageRepository.save(imagesInfo);
+    }
+
+    public List<ImagesInfo> getAllImagesByCategory(ProductCategory productCategory) {
+        List<ImagesInfo> images = imageRepository.findByProductCategory(productCategory);
+        images.sort(Comparator.comparingInt(ImagesInfo::getPriority).reversed());
+        return images;
+    }
 }
