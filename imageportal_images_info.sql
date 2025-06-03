@@ -26,12 +26,13 @@ CREATE TABLE `images_info` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
   `image_name` varchar(255) DEFAULT NULL,
-  `image_url` varchar(255) DEFAULT NULL,
   `image_status` enum('active','deleted','inactive') DEFAULT NULL,
-  `priority` enum('high','low','medium') DEFAULT NULL,
-  `product_category` enum('icon','promotion') DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
+  `priority` int DEFAULT NULL,
+  `product_category` enum('banners','icon','promotion') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE `images_info` (
 
 LOCK TABLES `images_info` WRITE;
 /*!40000 ALTER TABLE `images_info` DISABLE KEYS */;
-INSERT INTO `images_info` VALUES (1,'<p>test 2</p>','Test 2','https://imagedelivery.net/ZY5OwFLlTE2ePHl_IE20jg/af5729be-2314-4897-2188-f9c0b43a7c00/public','active','medium','icon'),(2,'<p>sdlsmdls</p>','sd,msld','dklmks','active','medium','icon');
+INSERT INTO `images_info` VALUES (1,'<p><span class=\"ql-size-huge\">gdjsjdnsds</span></p>','Test 1','active','https://imagedelivery.net/ZY5OwFLlTE2ePHl_IE20jg/e8222d70-3e43-4e0b-9950-7243114f8200/public','Aviator',1,'icon'),(2,'<ul><li>Yest</li><li>REst</li><li><strong>67</strong></li></ul>','Test 2','active','https://imagedelivery.net/ZY5OwFLlTE2ePHl_IE20jg/6f0006a6-3e25-4e3a-c930-d86dbde01200/public','Aviator',2,'banners'),(3,'<p>jbjbjb</p>','tesrtyy','active','https://imagedelivery.net/ZY5OwFLlTE2ePHl_IE20jg/001585c2-2337-475d-52bd-6df2e3c7c900/public','jjknj',7,'banners'),(4,'<p><u class=\"ql-size-large\"> Hakibets</u></p><ol><li><u class=\"ql-size-large\">Jetbros</u></li></ol><ul><li><u class=\"ql-size-large\">yurty</u></li></ul>','Test 2','active','https://imagedelivery.net/ZY5OwFLlTE2ePHl_IE20jg/16fb4f21-c8b7-459b-79d2-b6b17efe6b00/public','Test 1',4,'promotion'),(5,'<p class=\"ql-align-center\"><strong class=\"ql-size-large\"><em>Isak Condescemnding</em></strong></p>','Isak Celebration','active','https://imagedelivery.net/ZY5OwFLlTE2ePHl_IE20jg/d9b36e97-1ece-44e3-d7e3-d535c6e79900/public','Celebration',4,'banners'),(6,'<p>sjkdn sjdnsjds</p>','Treokn','active','https://imagedelivery.net/ZY5OwFLlTE2ePHl_IE20jg/dec216d2-014a-404a-cf07-9e15506d9c00/public','jdnsdns',4,'promotion'),(7,'<p>jbjkbn knknl</p>','ojojih','inactive','https://imagedelivery.net/ZY5OwFLlTE2ePHl_IE20jg/0e8048af-1ca0-43c5-6313-c243dac9c600/public','ugubj',8,'icon');
 /*!40000 ALTER TABLE `images_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-19 14:37:45
+-- Dump completed on 2025-06-03 21:48:20
