@@ -3,12 +3,10 @@ package com.uploadportal.upload.imagesportal.controllers;
 import com.uploadportal.upload.imagesportal.entities.Users;
 import com.uploadportal.upload.imagesportal.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController

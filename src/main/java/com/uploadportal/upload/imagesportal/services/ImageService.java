@@ -45,7 +45,7 @@ public class ImageService {
     public ImagesInfo updateStatus(UpdateStatus updateStatus) {
 
         ImagesInfo image = imageRepository.findById(updateStatus.getId())
-                .orElseThrow(() -> new RuntimeException("Image not found"));
+                .orElseThrow(() -> new MissingFieldException("Image not found"));
         image.setImageStatus(ImageStatus.valueOf(updateStatus.getStatus()));
         return imageRepository.save(image);
     }
