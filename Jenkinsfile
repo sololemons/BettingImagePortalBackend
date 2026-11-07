@@ -6,7 +6,7 @@ pipeline {
         DEPLOYMENT  = "image-portal-service"
         CONTAINER   = "image-portal"
         NAMESPACE   = "image-portal-dev"
-        KUBECONFIG  = "/home/lemonsthedev/.kube/config"
+        KUBECONFIG  = "/var/jenkins_home/.kube/config"
     }
 
     options {
