@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME  = "solomonndimu/imageportal"
+        IMAGE_NAME  = "solomondocker10277/imageportal"
         DEPLOYMENT  = "image-portal-service"
         CONTAINER   = "image-portal"
         NAMESPACE   = "image-portal-dev"
